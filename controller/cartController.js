@@ -79,3 +79,22 @@ module.exports.delete_cartItem = async (req, res) => {
         res.status(400).send('Unable to delete')
     }
 }
+
+module.exports.empty_cart = async (req,res) => {
+    let cartId = req.params.id
+    console.log(cartId)
+    try {
+        await CartItem.deleteMany({cartId})
+        try {
+            const cart =  await Cart.findById({_id:cartId})
+            if(!cart.cartEmpty){
+                await Cart.findByIdAndUpdate({_id:cartId},{cartEmpty:true})
+            }
+        } catch (err) {
+            console.log(err)
+        }
+        res.status(200).send('Successfully deleted')
+    } catch (err) {
+        res.status(400).send('Unable to delete')
+    } 
+}

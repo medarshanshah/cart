@@ -160,4 +160,6 @@ cartRouter.put('/', requireAuth, cartController.edit_cartItemQuantity)
  */
 cartRouter.delete('/', requireAuth, cartController.delete_cartItem)
 
+cartRouter.delete('/:id', requireAuth, cartController.empty_cart)
+
 module.exports = cartRouter
