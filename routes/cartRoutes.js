@@ -162,4 +162,19 @@ cartRouter.delete('/', requireAuth, cartController.delete_cartItem)
 
 cartRouter.delete('/:id', requireAuth, cartController.empty_cart)
 
+//ADMIN
+/**
+ * @swagger
+ * /cart:
+ *  get:
+ *      summary: Request to get the cart of the current logged in User
+ *      tags: [Cart]
+ *      responses:
+ *          '200':
+ *              description: A successful response
+ *          '400':
+ *              description: Bad Request. Error in Retrieving products
+ */
+ cartRouter.get('/admin', requireAuth, cartController.get_allCarts)
+
 module.exports = cartRouter

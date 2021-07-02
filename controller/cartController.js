@@ -98,3 +98,12 @@ module.exports.empty_cart = async (req,res) => {
         res.status(400).send('Unable to delete')
     } 
 }
+
+module.exports.get_allCarts = async (req, res) => {
+    try{
+        const carts = await Cart.find()
+        res.status(200).json(cart)
+    } catch(err){
+        res.status(400).send(err)
+    }
+}

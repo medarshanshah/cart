@@ -5,7 +5,7 @@ const Cart = require('../models/Cart')
 
 
 // Assertion style ... should
-chai.should()
+const should = chai.should()
 chai.use(chaiHttp)
 
 describe('Cart API', () => {
@@ -16,10 +16,9 @@ describe('Cart API', () => {
         it('get the cart of the current logged in User', () => {
             chai.request(app)
                 .get('/cart')
-                .then((err, response) => {
+                .then(response => {
                     response.should.have.status(200)
                     response.body.should.be.a('array')
-                   // response.body.length.should.be.eq(3)
                 })
                 .catch(err => {
                     console.error(err);
@@ -85,7 +84,7 @@ describe('Cart API', () => {
                     productId: "60cf4690536e177c1f44d6fd",
                     quantity: 1,
                 })
-                .then((err, response) => {
+                .then( response => {
                     response.should.have.status(200)
                 })
                 .catch(err => {
@@ -101,8 +100,8 @@ describe('Cart API', () => {
                     productId: "60cf4690536e177c1f44d6fd",
                     quantity: 1,
                 })
-                .then((err, response) => {
-                    response.should.have.status(400)
+                .then(response => {
+                    response.should.have.status(404)
                 })
                 .catch(err => {
                     console.error(err);
@@ -117,8 +116,8 @@ describe('Cart API', () => {
                     cartId: "60d2db1b581f804b4c7b1e43",
                     quantity: 1,
                 })
-                .then((err, response) => {
-                    response.should.have.status(400)
+                .then(response => {
+                    response.should.have.status(404)
                 })
                 .catch(err => {
                     console.error(err);
@@ -133,8 +132,8 @@ describe('Cart API', () => {
                     cartId: "60d2db1b581f804b4c7b1e43",
                     productId: "60cf4690536e177c1f44d6fd"
                 })
-                .then((err, response) => {
-                    response.should.have.status(400)
+                .then( response => {
+                    response.should.have.status(404)
                 })
                 .catch(err => {
                     console.error(err);
@@ -148,7 +147,7 @@ describe('Cart API', () => {
                 .send({
                     quantity: 1,
                 })
-                .then((err, response) => {
+                .then(response => {
                     response.should.have.status(400)
                 })
                 .catch(err => {
